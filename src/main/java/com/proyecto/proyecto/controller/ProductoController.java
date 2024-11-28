@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public class ProductoController {
     private List<Producto> productos = new ArrayList<>(
-        Arrays.asList(new Producto(1234, 2, "lenovo", "24367", 1000000))
+        Arrays.asList(new Producto(123456, 3, "computador", 10.500))
     );
 
     @GetMapping("productos")
@@ -29,10 +29,10 @@ public class ProductoController {
         return productos;
     }
 
-    @GetMapping("producto/{marca}")
-    public Producto getProducto(@PathVariable String marca) {
+    @GetMapping("producto/{nombre}")
+    public Producto getProducto(@PathVariable String nombre) {
         for (Producto c : productos){
-            if (c.getMarca().equalsIgnoreCase(marca)){
+            if (c.getNombre().equalsIgnoreCase(nombre)){
                 return c;
             }
         }
@@ -40,23 +40,23 @@ public class ProductoController {
     }
 
     @PostMapping("producto")
-    public Producto posProducto(@RequestBody Producto producto) {
+    public Producto postProducto(@RequestBody Producto producto) {
         productos.add(producto);
-        
+
         return producto;
     }
 
     @PutMapping("producto")
     public Producto putProducto(@RequestBody Producto producto) {
-        for( Producto c : productos){
-            if(c.getIdPro() == producto.getIdPro()){
+        for ( Producto c : productos){
+            if(c.getIdPro().equals(producto.getIdPro())){
                 c.setCantidad(producto.getCantidad());
-                c.setMarca(producto.getMarca());
-                c.setSn(producto.getSn());
-                c.setPrecio(producto.getPrecio());
+                c.setNombre(producto.getNombre());
+                c.setValor(producto.getValor());
                 return c;
             }
-        }        
+        }
+        
         return null;
     }
 

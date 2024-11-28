@@ -10,8 +10,7 @@ public class Producto {
 
     private Integer idPro;
     private Integer cantidad;
-    private String marca;
-    private String sn;
-    private Integer precio;
+    private String nombre;
+    private Double valor;
 
 }
